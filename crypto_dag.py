@@ -5,6 +5,7 @@ from pivot_data import pivot_crypto_data
 from extract import fetch_crypto_data
 from time_series_analysis import analyze_and_forecast_crypto
 
+<<<<<<< HEAD
 import pandas as pd
 from sqlalchemy import create_engine
 import psycopg2
@@ -22,6 +23,8 @@ def run_forecast():
     # Example: Forecast BTC for 24 hours
     analyze_and_forecast_crypto(df, coin='BTC', forecast_hours=24)
 
+=======
+>>>>>>> b027df50b5c1a3319ec2513cf0fa66deb0c53024
 default_args={
         'owner': 'Gilbert',
         'depend_on_past':False,
@@ -58,7 +61,11 @@ with DAG(
 
     analyze_and_predict_task=PythonOperator(
             task_id='analyze_and_forecast_crypto',
+<<<<<<< HEAD
             python_callable=run_forecast,
+=======
+            python_callable=analyze_and_forecast_crypto,
+>>>>>>> b027df50b5c1a3319ec2513cf0fa66deb0c53024
 
 
             )
@@ -67,3 +74,7 @@ with DAG(
     fetch_data_task >> pivot_data_task >> analyze_and_predict_task
 
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> b027df50b5c1a3319ec2513cf0fa66deb0c53024
