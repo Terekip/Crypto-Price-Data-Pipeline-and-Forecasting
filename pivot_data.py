@@ -5,12 +5,7 @@ from dotenv import load_dotenv
 import os
 load_dotenv()
 
-#user ='avnadmin'
-#password='AVNS_5fLPUVkBBuUzmOuroVq'
-#host='pg-3700d966-gilbert-c4d7.c.aivencloud.com'
-#port='26765'
-#database='defaultdb'
-#engine = create_engine(f"postgresql+psycopg2://{user}:{password}@{host}:{port}/{database}")
+
 conn= psycopg2.connect(
     user=os.getenv('DB_USER'),
     password=os.getenv('DB_PASSWORD'),
