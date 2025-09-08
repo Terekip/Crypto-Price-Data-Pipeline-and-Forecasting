@@ -4,27 +4,26 @@ from datetime import datetime, timedelta
 from pivot_data import pivot_crypto_data
 from extract import fetch_crypto_data
 from time_series_analysis import analyze_and_forecast_crypto
-
-<<<<<<< HEAD
 import pandas as pd
 from sqlalchemy import create_engine
 import psycopg2
+from dotenv import load_dotenv
+import os
+load_dotenv()
 
 def run_forecast():
     conn= psycopg2.connect(
-     user ='avnadmin',
-     password='AVNS_5fLPUVkBBuUzmOuroVq',
-     host='pg-3700d966-gilbert-c4d7.c.aivencloud.com',
-     port='26765',
-     database='defaultdb')
+    user=os.getenv('DB_USER'),
+    password=os.getenv('DB_PASSWORD'),
+    host=os.getenv('DB_HOST'),
+    port=os.getenv('DB_PORT'),
+    database=os.getenv('DB_NAME'))
     #engine = create_engine("postgresql+psycopg2://avnadmin:AVNS_5fLPUVkBBuUzmOuroVq@pg-3700d966-gilbert-c4d7.c.aivencloud.com:26765/defaultdb")
     df = pd.read_sql("SELECT * FROM crypto_prices", conn)
     
     # Example: Forecast BTC for 24 hours
     analyze_and_forecast_crypto(df, coin='BTC', forecast_hours=24)
 
-=======
->>>>>>> b027df50b5c1a3319ec2513cf0fa66deb0c53024
 default_args={
         'owner': 'Gilbert',
         'depend_on_past':False,
@@ -61,11 +60,7 @@ with DAG(
 
     analyze_and_predict_task=PythonOperator(
             task_id='analyze_and_forecast_crypto',
-<<<<<<< HEAD
             python_callable=run_forecast,
-=======
-            python_callable=analyze_and_forecast_crypto,
->>>>>>> b027df50b5c1a3319ec2513cf0fa66deb0c53024
 
 
             )
@@ -74,7 +69,3 @@ with DAG(
     fetch_data_task >> pivot_data_task >> analyze_and_predict_task
 
 
-<<<<<<< HEAD
-=======
-
->>>>>>> b027df50b5c1a3319ec2513cf0fa66deb0c53024

@@ -6,19 +6,23 @@ import pandas as pd
 import numpy as np
 from sqlalchemy import create_engine
 import psycopg2
+from dotenv import load_dotenv
+import os
+load_dotenv()
+
 conn= psycopg2.connect(
 <<<<<<< HEAD
-     user ='avnadmin',
-     password='AVNS_5fLPUVkBBuUzmOuroVq',
-     host='pg-3700d966-gilbert-c4d7.c.aivencloud.com',
-     port='26765',
-     database='defaultdb')
+    user=os.getenv('DB_USER'),
+    password=os.getenv('DB_PASSWORD'),
+    host=os.getenv('DB_HOST'),
+    port=os.getenv('DB_PORT'),
+    database=os.getenv('DB_NAME'))
 =======
-      user ='postgres',
-      password='12345',
-      host='20.107.168.152',
-      port='5432',
-      database='cryptodb')
+user=os.getenv('DB_USER'),
+password=os.getenv('DB_PASSWORD'),
+host=os.getenv('DB_HOST'),
+port=os.getenv('DB_PORT'),
+database=os.getenv('DB_NAME')')
 >>>>>>> b027df50b5c1a3319ec2513cf0fa66deb0c53024
 #engine = create_engine( f"postgresql://{user}:{password}@{host}:{port}/{database}")
 

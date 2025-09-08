@@ -2,6 +2,9 @@ import pandas as pd
 from sqlalchemy import create_engine
 <<<<<<< HEAD
 import psycopg2
+from dotenv import load_dotenv
+import os
+load_dotenv()
 
 #user ='avnadmin'
 #password='AVNS_5fLPUVkBBuUzmOuroVq'
@@ -10,19 +13,19 @@ import psycopg2
 #database='defaultdb'
 #engine = create_engine(f"postgresql+psycopg2://{user}:{password}@{host}:{port}/{database}")
 conn= psycopg2.connect(
-      user ='avnadmin',
-      password='AVNS_5fLPUVkBBuUzmOuroVq',
-      host='pg-3700d966-gilbert-c4d7.c.aivencloud.com',
-      port='26765',
-      database='defaultdb')
+    user=os.getenv('DB_USER'),
+    password=os.getenv('DB_PASSWORD'),
+    host=os.getenv('DB_HOST'),
+    port=os.getenv('DB_PORT'),
+    database=os.getenv('DB_NAME'))
 =======
 
 
-user = 'postgres'
-password = '12345'
-host = '20.107.168.152'
-port = '5432'
-database = 'cryptodb'
+user=os.getenv('DB_USER'),
+password=os.getenv('DB_PASSWORD'),
+host=os.getenv('DB_HOST'),
+port=os.getenv('DB_PORT'),
+database=os.getenv('DB_NAME')
 engine = create_engine(f"postgresql+psycopg2://{user}:{password}@{host}:{port}/{database}")
 
 >>>>>>> b027df50b5c1a3319ec2513cf0fa66deb0c53024
